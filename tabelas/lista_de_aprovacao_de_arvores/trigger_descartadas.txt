@@ -1,0 +1,16 @@
+-- Name: delete_fotos_and_validadas_or_validacao
+-- Tabela: descartadas
+-- Time: After
+-- Event: Insert
+BEGIN
+    IF (SELECT (SELECT COUNT(`foto`) FROM `validacao` WHERE id = NEW.id AND id_usuario = NEW.id_usuario) > 0) THEN
+        DELETE FROM `validacao` WHERE id = NEW.id AND id_usuario = NEW.id_usuario;
+    ELSEIF (SELECT (SELECT COUNT(`foto`) FROM `fotos` WHERE id = NEW.id AND id_usuario = NEW.id_usuario) > 0) THEN
+    	DELETE FROM `fotos` WHERE id = NEW.id AND id_usuario = NEW.id_usuario;
+        DELETE FROM `validadas` WHERE id = NEW.id AND id_usuario = NEW.id_usuario;
+-- Não Funciona --> DELETE FROM `validadas` WHERE id = NEW.id;
+	ELSEIF (SELECT (SELECT COUNT(`foto`) FROM `fotos` WHERE id = NEW.id - 1 AND id_usuario = NEW.id_usuario - 1) > 0) THEN
+        DELETE FROM `fotos` WHERE id = NEW.id - 1 AND id_usuario = NEW.id_usuario - 1;
+        DELETE FROM `validadas` WHERE id = NEW.id - 1 AND id_usuario = NEW.id_usuario - 1;	
+    END IF;
+END

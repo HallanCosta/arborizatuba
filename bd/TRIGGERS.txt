@@ -1,0 +1,19 @@
+Trigger Name: add_prox_poda_na_tabela_poda_E_Insere_em_fotos_validadas
+Tabela: validadas
+Time: AFTER
+Event: INSERT
+
+
+
+BEGIN
+	INSERT INTO `fotos_validadas` 
+    VALUES(NULL, CURDATE(), NEW.urlFoto, NEW.id);
+    
+	IF (NEW.prox_poda = CURDATE()) THEN	
+		INSERT INTO conf_poda
+        VALUES(NULL, NEW.prox_poda, '0', NEW.id);
+    ELSE
+    	INSERT INTO conf_poda
+        VALUES(NULL, NEW.prox_poda, '1', NEW.id);
+    END IF;
+END

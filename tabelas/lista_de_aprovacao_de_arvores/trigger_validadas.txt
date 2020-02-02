@@ -1,0 +1,23 @@
+-- Name: insert_fotos_and_delete_validacao_or_descartadas_after_insert
+-- Tabela: validadas
+-- Time: After
+-- Event: Insert
+
+BEGIN
+	IF (SELECT (SELECT COUNT(`foto`) FROM `validacao` WHERE id = NEW.id AND id_usuario = NEW.id_usuario) > 0) THEN
+    	INSERT INTO `fotos`
+        VALUES(NULL, NOW(), (SELECT `foto` FROM `validacao` WHERE id = NEW.id), NEW.id, NEW.id_usuario);
+		DELETE FROM `validacao` WHERE id = NEW.id AND id_usuario = NEW.id_usuario;
+        
+    ELSEIF (SELECT (SELECT COUNT(`foto`) FROM `descartadas` WHERE id = NEW.id AND id_usuario = NEW.id_usuario) > 0) THEN
+    	INSERT INTO `fotos`
+        VALUES(NULL, NOW(), (SELECT `foto` FROM `descartadas` WHERE id = NEW.id AND id_usuario = NEW.id_usuario), NEW.id, NEW.id_usuario);
+		DELETE FROM `descartadas` WHERE id = NEW.id AND id_usuario = NEW.id_usuario;
+        
+    ELSEIF (SELECT (SELECT COUNT(`foto`) FROM `descartadas` WHERE id = NEW.id - 1 AND id_usuario = NEW.id_usuario - 1) > 0) THEN
+    	INSERT INTO `fotos`
+        VALUES(NULL, NOW(), (SELECT `foto` FROM `descartadas` WHERE id = NEW.id - 1 AND id_usuario = NEW.id_usuario - 1), NEW.id, NEW.id_usuario);
+		DELETE FROM `descartadas` WHERE id = NEW.id - 1 AND id_usuario = NEW.id_usuario - 1;
+        
+    END IF;
+END

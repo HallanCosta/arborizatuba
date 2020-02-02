@@ -1,0 +1,15 @@
+Tabela: validadas
+Nome Trigger: Insere_em_Fotos_Relatorio (Validadas)
+Tempo: After
+Event: Insert
+
+Codigo: INSERT INTO `fotos`
+VALUES(NULL, CURDATE(), NEW.urlFoto, NEW.id)
+_____________________________________________________________________
+Tabela: descartadas
+Nome Trigger: Insere_em_Fotos_Relatorio (Descartadas)
+Tempo: After
+Evento: Insert
+
+Codigo: INSERT INTO `fotos`
+VALUES(NULL, CURDATE(), NEW.urlFoto, NEW.id)

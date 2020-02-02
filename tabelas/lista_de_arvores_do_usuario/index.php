@@ -1,0 +1,1 @@
+<?php header('Location: relatorio_do_usuario.php?page=1');?>

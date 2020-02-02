@@ -1,0 +1,17 @@
+Trigger Name: add_prox_poda_na_tabela_poda
+Tabela: validacao
+Time: AFTER
+Event: INSERT
+
+
+
+
+BEGIN
+	IF (NEW.prox_poda = CURDATE()) THEN	
+		INSERT INTO conf_poda
+        VALUES(NULL, NEW.prox_poda, '0', NEW.id);
+    ELSE
+    	INSERT INTO conf_poda
+        VALUES(NULL, NEW.prox_poda, '1', NEW.id);
+    END IF;
+END

@@ -1,0 +1,1 @@
+<?php header('Location: relatorio_validacao.php?page=1');?>

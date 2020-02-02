@@ -1,0 +1,1 @@
+<?php header('Location: relatorio_descartadas.php?page=1');?>

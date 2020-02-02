@@ -1,0 +1,8 @@
+-- ÁRVORE ALFANA PODA AGENDADA --
+INSERT INTO validadas VALUES(NULL, '16021-305', 'Rua', 'Madalena Lourenço Bruno', '461', '0', 'Jussara', 'Alfana', 'Grande', 1, '2019-09-27', '2022-09-12', 'Diretorio da arvore 1', 1);
+
+-- ÁRVORE ALFENEIRO PODA NÃO AGENDADA -- 
+INSERT INTO validadas VALUES(NULL, '16021-305', 'Rua', 'Madalena Lourenço Bruno', '461', '0', 'Jussara', 'Alfeneiro', 'Grande', 1, '2019-09-27', '2019-09-27', 'Diretorio da arvore 2', 1);
+
+-- ÁRVORE YPE PODA AGENDADA --
+INSERT INTO validadas VALUES(NULL, '16021-305', 'Rua', 'Madalena Lourenço Bruno', '461', '0', 'Jussara', 'Alfana', 'Grande', 1, '2019-09-12', '2030-09-30', 'Diretorio da arvore 3', 1);

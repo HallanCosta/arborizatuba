@@ -1,0 +1,17 @@
+Funcionario fulano de Tal
+funcionario@hotmail.com
+funcionario
+1b0d1706a20d52ec5e9a56f6d02381bcb0c290428878c01cee6d03e5fb0a63759b58e02a103084fa40450883fef067560416aaa86f042dc9996877f4eff1d698
+
+Gerente ta na disney
+gerente@hotmail.com
+gerente
+82f9fcb9af633f1feffdac34c4313c2866b4f1b2a08ffc63d89ec6a006d9cace1d6f1de3e2364bac81b007f38c69ae107d5518348310fae9cf4bdf9c3edb5b3f
+
+Administrador RoV
+administrador@hotmail.com
+administrador
+48ce685fa540d6feb8372dcbbec0e917a2a3bf5d0596c9dadd9c9ebae29307dc61337ee9dc1f011c0ec7dab1cc034617b8756065a7287937e0612020bfd1636e
+
+INSERT INTO `funcionario` (`id`, `nome`, `email`, `usuario`, `senha`, `datadenasc`, `cpf`, `rg`, `telefone`, `cep`, `tp_logradouro`, `logradouro`, `num`, `apto`, `bairro`, `cidade`, `uf`, `cargo`) VALUES (NULL, 'Gerente ta na disney', 'gerente@hotmail.com', 'gerente', '82f9fcb9af633f1feffdac34c4313c2866b4f1b2a08ffc63d89ec6a006d9cace1d6f1de3e2364bac81b007f38c69ae107d5518348310fae9cf4bdf9c3edb5b3f', '2019-09-11', '358.818.628-98', '48.818.628-1', '18997676538', '16021-305', 'Rua', 'Madalena Lourenço Bruno', '461', '', 'Jussara', 'Araçatuba', 'São Paulo', 'Gerente');
+

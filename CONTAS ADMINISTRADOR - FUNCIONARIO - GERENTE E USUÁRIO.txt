@@ -1,0 +1,17 @@
+﻿/*USUARIOS:*/
+INSERT INTO `usuario`(`id`, `nome`, `email`, `usuario`, `senha`) VALUES (NULL, 'Hállex da Silva Costa', 'hallex.costa@hotmail.com', 'hallex', md5('hallex123'));
+
+INSERT INTO `usuario`(`id`, `nome`, `email`, `usuario`, `senha`) VALUES (NULL, 'Hállan da Silva Costa', 'hallan.costa1@hotmail.com', 'hallan', md5('hallan123'));
+
+INSERT INTO `usuario`(`id`, `nome`, `email`, `usuario`, `senha`) VALUES (NULL, 'Rian Pablo Panini', 'name@example.com', 'rian', md5('rian123'));
+
+INSERT INTO `usuario`(`id`, `nome`, `email`, `usuario`, `senha`) VALUES (NULL, 'Juliana Batista Gonçalves', 'name@example.com', 'juliana', md5('juliana123'));
+
+/*ADMINISTRADOR:*/
+INSERT INTO `admin` (`id`, `nome`, `email`, `usuario`, `senha`, `datadenasc`, `cpf`, `rg`, `telefone`, `tp_logradouro`, `logradouro`, `num`, `bairro`, `cidade`, `estado`, `cargo`) VALUES (NULL, 'Administrador', 'admin@arborizatuba.com', 'admin', MD5('admin123'), '2002-07-16', '000.000.000-00', 'XX.XXX.XXX-X', '(00) 00000-0000', 'Praça', 'Gétulio Vargas', '0000', 'Jussara', 'Araçatuba', 'São Paulo', '3');
+
+/*GERENTE:*/
+INSERT INTO `funcionario` (`id`, `nome`, `email`, `usuario`, `senha`, `datadenasc`, `cpf`, `rg`, `telefone`, `cep`, `tp_logradouro`, `logradouro`, `num`, `complemento`, `bairro`, `cidade`, `uf`, `cargo`) VALUES (NULL, 'Gerente', 'name@example.com', 'gerente', MD5('gerente123'), '2019-10-01', '000.000.000-00', '00.000.000-0', '(00)00000-0000', '00000-000', 'Praça', 'Gétulio Vargas', '0000', 'Casa', 'Jussara', 'Araçatuba', 'SP', '2');
+
+/*FUNCIONARIO:*/
+INSERT INTO `funcionario` (`id`, `nome`, `email`, `usuario`, `senha`, `datadenasc`, `cpf`, `rg`, `telefone`, `cep`, `tp_logradouro`, `logradouro`, `num`, `complemento`, `bairro`, `cidade`, `uf`, `cargo`) VALUES (NULL, 'Funcionário', 'name@example.com', 'funcionario', MD5('funcionario123'), '2019-10-01', '000.000.000-00', '00.000.000-0', '(00)00000-0000', '00000-000', 'Praça', 'Gétulio Vargas', '0000', 'Casa', 'Jussara', 'Araçatuba', 'SP', '1');
