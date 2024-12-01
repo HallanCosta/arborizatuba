@@ -1,0 +1,124 @@
+services:
+  db:
+    container_name: arborizatuba-mysql
+    image: mysql:5.7
+    command: [
+      'mysqld',
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci',
+      '--default-authentication-plugin=mysql_native_password',
+      '--wait_timeout=28800',
+      '--sql-mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION',
+      '--log_bin_trust_function_creators=1'
+    ]
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    volumes:
+      - ./.docker/mysql:/var/lib/mysql
+      - ./docker-database.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - arborizatuba-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  phpmyadmin:
+    container_name: arborizatuba-phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: db
+      UPLOAD_LIMIT: 300M
+    networks:
+      - arborizatuba-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # server:
+  #   container_name: arborizatuba-app
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3001:80"
+  #   volumes:
+  #     - ./src:/var/www/html
+  #     - ./php.ini:/usr/local/etc/php/php.ini
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - arborizatuba-network
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+
+
+      # - XDEBUG_DISCOVER_CLIENT_HOST=0
+      # - XDEBUG_START_WITH_REQUEST=yes
+      # - XDEBUG_CLIENT_PORT=9003
+      # - XDEBUG_MODE=debug
+
+
+  app:
+    container_name: arborizatuba-server
+    image: webdevops/php-nginx-dev:7.4
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      - WEB_DOCUMENT_ROOT=/app
+      - PHP_DATE_TIMEZONE=America/Sao_Paulo
+      - PHP_DISPLAY_ERRORS=1
+      - PHP_MEMORY_LIMIT=256M
+      - PHP_MAX_EXECUTION_TIME=120
+      - PHP_POST_MAX_SIZE=50M
+      - PHP_UPLOAD_MAX_FILESIZE=50M
+      - PHP_DEBUGGER=xdebug
+      - PHP_IDE_CONFIG="serverName=PHPSTORM"
+      - XDEBUG_MODE=debug
+      - XDEBUG_DISCOVER_CLIENT_HOST=1
+      - XDEBUG_IDE_KEY=PHPSTORM
+      - XDEBUG_MAX_NESTING_LEVEL=1500
+      - XDEBUG_START_WITH_REQUEST=trigger
+      - XDEBUG_CLIENT_HOST=host.docker.internal
+      - XDEBUG_CLIENT_PORT=9003
+      - XDEBUG_OUTPUT_DIR=/app/.xdebug
+    ports:
+      - '3001:80'
+    networks:
+      - arborizatuba-network
+    depends_on:
+      - db
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  # ngrok:
+  #   container_name: arborizatuba-ngrok
+  #   image: ngrok/ngrok:latest
+  #   restart: unless-stopped
+  #   command:
+  #     - "start"
+  #     - "--all"
+  #     - "--config"
+  #     - "/etc/ngrok.yml"
+  #   volumes:
+  #     - ./.docker/ngrok.yml:/etc/ngrok.yml
+  #   ports:
+  #     - 4141:4040
+  #   networks:
+  #     - arborizatuba-network
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+  #   depends_on:
+  #     - app
+
+networks:
+  arborizatuba-network:
+    driver: bridge
+
+volumes:
+  mysql:
+  src:

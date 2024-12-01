@@ -1,0 +1,30 @@
+
+# Builder compiler
+build/node_modules
+
+# Wordpress
+src/*.php
+!wp-config.php
+!wp-env.php
+!wp-required-env.php
+src/wp-admin
+src/wp-content/*
+!src/wp-content/themes
+src/wp-content/themes/index.php
+src/wp-content/themes/twentytwentyone
+src/wp-content/themes/twentytwentytwo
+src/wp-content/themes/twentytwentythree
+src/wp-content/themes/twentytwentyfour
+src/license.txt
+src/readme.html
+src/Remove
+src/wp-includes
+
+# Docker
+.docker/*
+!.docker/ngrok.yml
+
+# Others
+*.log
+.env
+.env.staging

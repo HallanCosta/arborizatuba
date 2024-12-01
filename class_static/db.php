@@ -257,12 +257,12 @@
 		protected function Connect() {
 			try {
 				$this->setDBType('mysql');
-				$this->setHost('localhost');
+				$this->setHost('db');
 				$this->setPort(3306);
 				$this->setDBName('arborizatuba');
 				$this->setCharset('utf8');
 				$this->setUser('root');
-				$this->setPass('');
+				$this->setPass('secret');
 				$dbh = new PDO($this->getDBType() . ":host=" . $this->getHost() . ";port=" . $this->getPort() . ";dbname=" . $this->getDBName() . ";charset=" . $this->getCharset(), $this->getUser(), $this->getPass());
 				$this->setDbh($dbh);
 				$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
