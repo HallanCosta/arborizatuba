@@ -68,6 +68,7 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
+      - ./.docker/nginx/vhost.conf:/opt/docker/etc/nginx/vhost.conf
     environment:
       - WEB_DOCUMENT_ROOT=/app
       - PHP_DATE_TIMEZONE=America/Sao_Paulo
